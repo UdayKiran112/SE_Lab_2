@@ -3,7 +3,8 @@
 
 #include "student.h"
 
-void printGradeCount(Student students[], int count, FILE *output);
+void printGradeCount(Grade grades[], int count, FILE *output);
+char *gradeToString(Grade grade);
 void printTabularForm(Student students[], int count, FILE *output);
 
 #endif

@@ -6,7 +6,7 @@ TARGET = result
 OBJDIR = obj
 
 # Source and object files
-SRCS = main.c parser.c student.c validation.c
+SRCS = main.c parser.c student.c validation.c calculation.c output.c
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 
 all: $(TARGET)

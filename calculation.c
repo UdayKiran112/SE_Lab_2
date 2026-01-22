@@ -55,32 +55,6 @@ Grade calculateGrade(float percentage)
     }
 }
 
-// Function to convert Grade enum to string
-char *gradeToString(Grade grade)
-{
-    switch (grade)
-    {
-    case O:
-        return "O";
-    case A_PLUS:
-        return "A+";
-    case A:
-        return "A";
-    case B_PLUS:
-        return "B+";
-    case B:
-        return "B";
-    case C:
-        return "C";
-    case D:
-        return "D";
-    case F:
-        return "F";
-    default:
-        return "Unknown";
-    }
-}
-
 // Function to calculate class average percentage
 float calculateClassAveragePercentage(Student students[], int count)
 {
@@ -110,12 +84,12 @@ float findMaxPercentage(Student students[], int count)
 // Function to find minimum percentage in the class
 float findMinPercentage(Student students[], int count)
 {
-    float minPercentage = students[0].totalPercentage;
+    float minPercentage = get_student_percentage(&students[0]);
     for (int i = 1; i < count; i++)
     {
         if (students[i].totalPercentage < minPercentage)
         {
-            minPercentage = students[i].totalPercentage;
+            minPercentage = get_student_percentage(&students[i]);
         }
     }
     return minPercentage;

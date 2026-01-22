@@ -52,6 +52,11 @@ void set_student_percentage(Student *student, float percentage)
     student->totalPercentage = percentage;
 }
 
+void set_student_cgpa(Student *student, float cgpa)
+{
+    student->CGPA = cgpa;
+}
+
 const char *get_student_id(const Student *student)
 {
     return student->id;
@@ -97,6 +102,11 @@ float get_student_subject_total_marks(const Student *student, int subject_index)
     }
 
     return student->totalScores[subject_index];
+}
+
+float get_student_cgpa(const Student *student)
+{
+    return student->CGPA;
 }
 
 void delete_student(Student *student)
