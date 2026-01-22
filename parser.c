@@ -24,37 +24,39 @@ void parse_input(FILE *input, Student students[], int students_count, int *actua
     while (n < students_count)
     {
         // Read ID from line
-        while (1)
+        if (!fgets(line, sizeof(line), input))
+        {
+            break;
+        }
+
+        while (isLineEmpty(line))
         {
             if (!fgets(line, sizeof(line), input))
             {
                 goto finished;
             }
+        }
 
-            if (isLineEmpty(line))
-            {
-                continue; // skip blank lines safely
-            }
+        line[strcspn(line, "\n")] = '\0';
 
-            line[strcspn(line, "\n")] = '\0'; // Remove newline character
-
-            int idCheck = checkID(line, students, n);
-            if (idCheck == 0)
+        while (checkID(line, students, n) != 0)
+        {
+            if (checkID(line, students, n) == -1)
             {
-                break;
-            }
-            if (idCheck == -1)
-            {
-                printf("Invalid ID (%s).", line);
-                printf("Enter valid alphanumeric ID: ");
+                printf("Invalid ID: %s\n", line);
             }
             else
             {
-                printf("Duplicate ID (%s).", line);
-                printf("Enter unique ID: ");
+                printf("Duplicate ID: %s\n", line);
             }
 
-            fgets(line, sizeof(line), stdin);
+            printf("Enter valid unique alphanumeric ID: ");
+
+            if (!fgets(line, sizeof(line), stdin))
+            {
+                goto finished;
+            }
+
             line[strcspn(line, "\n")] = '\0';
         }
 
@@ -62,27 +64,31 @@ void parse_input(FILE *input, Student students[], int students_count, int *actua
         id_buffer[sizeof(id_buffer) - 1] = '\0';
 
         // Read Name from line
-        while (1)
+        if (!fgets(line, sizeof(line), input))
+        {
+            goto finished;
+        }
+
+        while (isLineEmpty(line))
         {
             if (!fgets(line, sizeof(line), input))
             {
                 goto finished;
             }
+        }
 
-            if (isLineEmpty(line))
-            {
-                continue; // skip blank lines safely
-            }
+        line[strcspn(line, "\n")] = '\0';
 
-            line[strcspn(line, "\n")] = '\0'; // Remove newline character
-
-            if (checkName(line) == 0)
-            {
-                break;
-            }
-            printf("Invalid Name : %s", line);
+        while (checkName(line) != 0)
+        {
+            printf("Invalid Name: %s\n", line);
             printf("Enter valid Name (alphabets and spaces only): ");
-            fgets(line, sizeof(line), stdin);
+
+            if (!fgets(line, sizeof(line), stdin))
+            {
+                goto finished;
+            }
+
             line[strcspn(line, "\n")] = '\0';
         }
 
@@ -97,29 +103,36 @@ void parse_input(FILE *input, Student students[], int students_count, int *actua
         {
             float minor, major;
 
+            if (!fgets(line, sizeof(line), input))
+            {
+                printf("Missing marks for %s (Subject %d)\n",
+                       id_buffer, i + 1);
+                printf("Enter Minor and Major marks: ");
+
+                if (!fgets(line, sizeof(line), stdin))
+                {
+                    goto finished;
+                }
+            }
+
             while (1)
             {
-                if (!fgets(line, sizeof(line), input))
+                if (sscanf(line, "%f %f", &minor, &major) != 2 ||
+                    checkMarks(minor, major) != 0)
                 {
-                    printf("Missing marks for %s for subject %d. ", id_buffer, i + 1);
-                    printf("Please enter Minor and Major marks: ");
-                    fgets(line, sizeof(line), stdin);
-                }
+                    printf("Invalid marks for %s (Subject %d)\n",
+                           id_buffer, i + 1);
+                    printf("Enter valid Minor and Major marks: ");
 
-                if (sscanf(line, "%f %f", &minor, &major) != 2)
-                {
-                    printf("Invalid marks format. Please enter Minor and Major marks again: ");
-                    fgets(line, sizeof(line), stdin);
-                    continue;
+                    if (!fgets(line, sizeof(line), stdin))
+                    {
+                        goto finished;
+                    }
                 }
-
-                if (checkMarks(minor, major) == 0)
+                else
                 {
                     break;
                 }
-                printf("Marks out of range for %s for subject %d. ", id_buffer, i + 1);
-                printf("Please enter valid Minor and Major marks: ");
-                fgets(line, sizeof(line), stdin);
             }
 
             set_student_marks(student_ptr, i, minor, major);
