@@ -32,15 +32,6 @@ typedef struct
     Grade grade;
 } Student;
 
-float calculateTotalMarks(float totalScores[]);
-float calculatePercentage(float totalMarks);
-Grade calculateGrade(float percentage);
-char *gradeToString(Grade grade);
-float calculateClassAveragePercentage(Student students[], int count);
-float findMaxPercentage(Student students[], int count);
-float findMinPercentage(Student students[], int count);
-int getGradePoint(Grade grade);
-float calculateCGPA(Student student);
 void printGradeCount(Student students[], int count, FILE *output);
 void printTabularForm(Student students[], int count, FILE *output);
 

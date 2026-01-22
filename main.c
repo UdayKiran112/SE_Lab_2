@@ -2,7 +2,6 @@
 
 int main(int argc, char *argv[])
 {
-
     // Argument check
     if (argc != 4)
     {
