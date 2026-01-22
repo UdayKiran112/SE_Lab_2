@@ -18,10 +18,10 @@
 | 25MCMT50 | Abhishek           |    52 |    56 |    60 |    64 |    68 |   300 |  60.00 | B     |  5.6 |
 | 25MCMT51 | Ajay Kumar         |    41 |    46 |    50 |    54 |    58 |   249 |  49.80 | F     |  2.6 |
 | 25MCMT52 | Deepak Singh       |    69 |    73 |    77 |    81 |    85 |   385 |  77.00 | A     |  7.8 |
-| 25MCMT53 | Naveen Kumar       |    34 |    38 |    42 |    46 |    50 |   210 |  42.00 | F     |  0.8 |
+| 25MCMT53 | Naveen Kumar       |    34 |    38 |    42 |    46 |    57 |   217 |  43.40 | F     |  1.0 |
 | 25MCMT54 | Sanjay             |    79 |    84 |    88 |    72 |    76 |   399 |  79.80 | A     |  8.0 |
 | 25MCMT55 | Kiran Reddy        |    61 |    66 |    70 |    74 |    79 |   350 |  70.00 | B+    |  7.0 |
 ----------------------------------------------------------------------------------------------------------------------------------------
-Class Average Percentage: 63.81
+Class Average Percentage: 63.88
 Highest Percentage in Class: 89.00
 Lowest Percentage in Class: 38.00

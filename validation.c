@@ -8,7 +8,6 @@ int checkID(char id[], Student students[], int count)
     {
         if (!isalnum(id[i]))
         {
-            fprintf(stderr, "Invalid ID: %s\n", id);
             return -1;
         }
     }
@@ -18,7 +17,6 @@ int checkID(char id[], Student students[], int count)
     {
         if (strcmp(students[i].id, id) == 0)
         {
-            fprintf(stderr, "Duplicate ID found: %s\n", id);
             return 1;
         }
     }
@@ -33,7 +31,6 @@ int checkName(char name[])
     {
         if (!isalpha(name[i]) && !isspace(name[i]))
         {
-            fprintf(stderr, "Invalid Name: %s\n", name);
             return 1;
         }
     }
@@ -46,12 +43,10 @@ int checkMarks(float minorMarks, float majorMarks)
 {
     if (minorMarks < 0.0 || minorMarks > 40.0)
     {
-        fprintf(stderr, "Invalid Minor Marks: %.2f\n", minorMarks);
         return 1;
     }
     else if (majorMarks < 0.0 || majorMarks > 60.0)
     {
-        fprintf(stderr, "Invalid Major Marks: %.2f\n", majorMarks);
         return -1;
     }
 

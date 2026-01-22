@@ -140,7 +140,7 @@ Naveen Kumar
 16 22
 18 24
 20 26
-22 28
+22 79
 
 25MCMT54
 Sanjay
