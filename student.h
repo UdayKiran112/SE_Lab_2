@@ -32,7 +32,5 @@ typedef struct
     Grade grade;
 } Student;
 
-void printGradeCount(Student students[], int count, FILE *output);
-void printTabularForm(Student students[], int count, FILE *output);
 
 #endif
