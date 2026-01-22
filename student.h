@@ -34,7 +34,7 @@ typedef struct
     Grade totalGrade;
 } Student;
 
-Student *create_student(int id, const char *name);
+Student *create_student(const char *id, const char *name);
 void set_student_marks(Student *student, int subject_index, float minor_marks, float major_marks);
 void set_student_subject_grade(Student *student, int subject_index, Grade grade);
 void set_student_grade(Student *student, Grade grade);

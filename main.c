@@ -1,4 +1,8 @@
 #include "parser.h"
+#include "student.h"
+#include "validation.h"
+#include "calculation.h"
+#include "output.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +13,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    int studentCount = atoi(argv[1]); // Number of students N
+    // Get student count
+    int studentCount = atoi(argv[1]);
 
     // Open input file
     FILE *input = fopen(argv[2], "r");
@@ -19,6 +24,8 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Input file error\n");
         return 1;
     }
+
+    Student students[studentCount];
 
     // Open output file
     FILE *output = fopen(argv[3], "w");
@@ -31,7 +38,7 @@ int main(int argc, char *argv[])
     }
 
     // Parse input and write to output
-    parse_input(studentCount, input, output);
+    //parse_input(studentCount, input, output);
 
     fclose(input);
     fclose(output);

@@ -1,11 +1,11 @@
 #include "student.h"
 
 // Function to create a new student
-Student *create_student(int id, const char *name)
+Student *create_student(const char *id, const char *name)
 {
     Student *new_student = (Student *)malloc(sizeof(Student));
 
-    snprintf(new_student->id, sizeof(new_student->id), "%d", id);
+    strncpy(new_student->id, id, sizeof(new_student->id));
     strncpy(new_student->name, name, sizeof(new_student->name));
     
     return new_student;
