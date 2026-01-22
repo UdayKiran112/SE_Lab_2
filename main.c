@@ -27,6 +27,14 @@ int main(int argc, char *argv[])
 
     Student students[studentCount];
 
+    // Parse input file and store data in students array
+    int actualCount = 0;
+    parse_input(input, students, studentCount, &actualCount);
+
+    // TODO: Calculation part
+
+    // TODO: Output part
+
     // Open output file
     FILE *output = fopen(argv[3], "w");
 
@@ -36,9 +44,6 @@ int main(int argc, char *argv[])
         fclose(input);
         return 1;
     }
-
-    // Parse input and write to output
-    //parse_input(studentCount, input, output);
 
     fclose(input);
     fclose(output);
