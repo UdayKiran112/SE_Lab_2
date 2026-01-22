@@ -23,6 +23,17 @@ void set_student_marks(Student *student, int subject_index, float minor_marks, f
     student->majorScores[subject_index] = major_marks;
 }
 
+void set_student_subject_grade(Student *student, int subject_index, Grade grade)
+{
+    if (subject_index < 0 || subject_index >= SUBS_COUNT)
+    {
+        fprintf(stderr, "Invalid subject index\n");
+        return;
+    }
+
+    student->subject_grades[subject_index] = grade;
+}
+
 void set_student_grade(Student *student, Grade grade)
 {
     student->totalGrade = grade;
