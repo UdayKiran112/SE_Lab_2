@@ -115,23 +115,60 @@ void parse_input(FILE *input, Student students[], int students_count, int *actua
                 }
             }
 
+            // Validate marks input if not in correct format
+            while (sscanf(line, "%f %f", &minor, &major) != 2)
+            {
+                printf("Invalid format for %s (Subject %d)\n",
+                       id_buffer, i + 1);
+                printf("Enter Minor and Major marks: ");
+
+                if (!fgets(line, sizeof(line), stdin))
+                {
+                    goto finished;
+                }
+            }
+
+            // Validate marks values and prompt until valid
             while (1)
             {
-                if (sscanf(line, "%f %f", &minor, &major) != 2 ||
-                    checkMarks(minor, major) != 0)
+                int status = checkMarks(minor, major);
+
+                if (status == 0)
                 {
-                    printf("Invalid marks for %s (Subject %d)\n",
-                           id_buffer, i + 1);
-                    printf("Enter valid Minor and Major marks: ");
+                    break; // both valid
+                }
+
+                if (status == 1)
+                {
+                    printf("Invalid Minor marks (%.2f) for %s (Subject %d)\n",
+                           minor, id_buffer, i + 1);
+                    printf("Enter valid Minor marks: ");
 
                     if (!fgets(line, sizeof(line), stdin))
                     {
                         goto finished;
                     }
+
+                    if (sscanf(line, "%f", &minor) != 1)
+                    {
+                        continue;
+                    }
                 }
-                else
+                else if (status == -1)
                 {
-                    break;
+                    printf("Invalid Major marks (%.2f) for %s (Subject %d)\n",
+                           major, id_buffer, i + 1);
+                    printf("Enter valid Major marks: ");
+
+                    if (!fgets(line, sizeof(line), stdin))
+                    {
+                        goto finished;
+                    }
+
+                    if (sscanf(line, "%f", &major) != 1)
+                    {
+                        continue;
+                    }
                 }
             }
 
