@@ -11,6 +11,7 @@ Student *create_student(const char *id, const char *name)
     return new_student;
 }
 
+// Function to set marks and calculate total scores for a subject
 void set_student_marks(Student *student, int subject_index, float minor_marks, float major_marks)
 {
     if (subject_index < 0 || subject_index >= SUBS_COUNT)
@@ -21,8 +22,10 @@ void set_student_marks(Student *student, int subject_index, float minor_marks, f
 
     student->minorScores[subject_index] = minor_marks;
     student->majorScores[subject_index] = major_marks;
+    student->totalScores[subject_index] = minor_marks + major_marks;
 }
 
+// Function to set grade for a subject
 void set_student_subject_grade(Student *student, int subject_index, Grade grade)
 {
     if (subject_index < 0 || subject_index >= SUBS_COUNT)
@@ -37,6 +40,16 @@ void set_student_subject_grade(Student *student, int subject_index, Grade grade)
 void set_student_grade(Student *student, Grade grade)
 {
     student->totalGrade = grade;
+}
+
+void set_student_total_marks(Student *student, float total_marks)
+{
+    student->totalMarks = total_marks;
+}
+
+void set_student_percentage(Student *student, float percentage)
+{
+    student->totalPercentage = percentage;
 }
 
 const char *get_student_id(const Student *student)
@@ -73,6 +86,17 @@ Grade get_student_subject_grade(const Student *student, int subject_index)
     }
 
     return student->subject_grades[subject_index];
+}
+
+float get_student_subject_total_marks(const Student *student, int subject_index)
+{
+    if (subject_index < 0 || subject_index >= SUBS_COUNT)
+    {
+        fprintf(stderr, "Invalid subject index\n");
+        return -1.0;
+    }
+
+    return student->totalScores[subject_index];
 }
 
 void delete_student(Student *student)

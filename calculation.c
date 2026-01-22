@@ -4,6 +4,7 @@
 float calculateTotalMarks(float totalScores[])
 {
     float sum = 0.0;
+
     for (int i = 0; i < SUBS_COUNT; i++)
     {
         sum += totalScores[i];
@@ -147,13 +148,12 @@ int getGradePoint(Grade grade)
 }
 
 // Calculate CGPA of a student using total marks in each subject
-float calculateCGPA(Student student)
+float calculateCGPA(Grade sub_grades[])
 {
     float cgpa = 0.0;
     for (int i = 0; i < SUBS_COUNT; i++)
     {
-        Grade gr = calculateGrade(student.minorScores[i] + student.majorScores[i]);
-        cgpa += getGradePoint(gr);
+        cgpa += getGradePoint(sub_grades[i]);
     }
     return cgpa / SUBS_COUNT;
 }
