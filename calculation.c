@@ -61,7 +61,8 @@ float calculateClassAveragePercentage(Student students[], int count)
     float avgPercentage = 0.0;
     for (int i = 0; i < count; i++)
     {
-        avgPercentage += students[i].totalPercentage;
+        float student_percentage = get_student_percentage(&students[i]);
+        avgPercentage += student_percentage;
     }
 
     return avgPercentage / count;
@@ -73,9 +74,10 @@ float findMaxPercentage(Student students[], int count)
     float maxPercentage = students[0].totalPercentage;
     for (int i = 1; i < count; i++)
     {
-        if (students[i].totalPercentage > maxPercentage)
+        float student_percentage = get_student_percentage(&students[i]);
+        if (student_percentage > maxPercentage)
         {
-            maxPercentage = students[i].totalPercentage;
+            maxPercentage = student_percentage;
         }
     }
     return maxPercentage;
@@ -87,9 +89,10 @@ float findMinPercentage(Student students[], int count)
     float minPercentage = get_student_percentage(&students[0]);
     for (int i = 1; i < count; i++)
     {
-        if (students[i].totalPercentage < minPercentage)
+        float student_percentage = get_student_percentage(&students[i]);
+        if (student_percentage < minPercentage)
         {
-            minPercentage = get_student_percentage(&students[i]);
+            minPercentage = student_percentage;
         }
     }
     return minPercentage;

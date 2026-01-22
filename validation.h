@@ -4,7 +4,7 @@
 #include "student.h"
 
 // Methods
-int checkID(char id[], Student students[], int count); // change inputs to reduce coupling
+int checkID(char id[], Student students[], int count); 
 int checkName(char name[]);
 int checkMarks(float minorMarks, float majorMarks);
 

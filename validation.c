@@ -15,7 +15,8 @@ int checkID(char id[], Student students[], int count)
     // Duplicate ID check
     for (int i = 0; i < count; i++)
     {
-        if (strcmp(students[i].id, id) == 0)
+        const char *existing_id = get_student_id(&students[i]);
+        if (strcmp(existing_id, id) == 0)
         {
             return 1;
         }
