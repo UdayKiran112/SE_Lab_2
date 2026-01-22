@@ -49,6 +49,8 @@ char *gradeToString(Grade grade)
         return "D";
     case F:
         return "F";
+    case ND:
+        return "ND";
     default:
         return "ND";
     }
@@ -60,7 +62,7 @@ void printTabularForm(Student students[], int count, FILE *output)
     fprintf(output,
             "----------------------------------------------------------------------------------------------------------------------------------------\n");
     fprintf(output,
-            "|    ID    |       Name         |   S1   |   S2   |   S3   |   S4   |   S5   | Total | %%     | Grade | CGPA |\n");
+            "|    ID    |       Name         |    S1    |    S2    |    S3    |    S4    |    S5    | Total |   %%    | Grade | CGPA |\n");
     fprintf(output,
             "----------------------------------------------------------------------------------------------------------------------------------------\n");
 
@@ -72,8 +74,8 @@ void printTabularForm(Student students[], int count, FILE *output)
 
         for (int j = 0; j < SUBS_COUNT; j++)
         {
-            fprintf(output, "%5.0f | ",
-                    get_student_subject_total_marks(&students[i], j));
+            fprintf(output, "%3.0f | %-2s | ",
+                    get_student_subject_total_marks(&students[i], j), gradeToString(get_student_subject_grade(&students[i], j)));
         }
 
         fprintf(output, "%5.0f | %6.2f | %-5s | %4.1f |\n",
